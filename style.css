@@ -35,6 +35,32 @@ header {
 #header-right {
     float: right;
     height: 100%;
-    width: 15%;
-    background-color: yellow;
+    width: 20%;
+    padding: 40px 20px;
+}
+
+#search {
+    height: 100%;
+}
+
+#search-icon {
+    float: left;
+    width: 20%;
+    text-align: center;
+    background-color: white;
+    color: grey;
+    padding: 6px 0;
+}
+
+#search-bar {
+    float: left;
+    width: 80%;
+}
+
+#search-bar input {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-left: 1px solid #e4e4e4;
+    padding-left: 10px;
 }
