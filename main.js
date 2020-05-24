@@ -15,8 +15,11 @@ $(document).ready(function() {
         error: function() {
             console.log('errore');
         }
+    });
 
 
+    $('#search-icon').click(function() {
+        alert('funziona');
     });
 
 
