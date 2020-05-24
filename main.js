@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+    var template_html = $('#film').html();
+    var template_function = Handlebars.compile(template_html);
+
     $('#search-icon').click(function() {
         var control_research = $('#search-movie').val();
         if (control_research.trim() != '') {
@@ -19,7 +22,32 @@ function ricerca_api(research) {
             query: research
         },
         success: function(response) {
-            console.log(response);
+
+            var numero_film = response.results.length;
+
+
+            for (var i = 0; i < numero_film; i++) {
+                var titolo = response.results[i].title;
+                // console.log(titolo);
+                var titolo_originale = response.results[i].original_title;
+                // console.log(titolo_originale);
+                var lingua = response.results[i].original_language;
+                // console.log(lingua);
+                var voto = response.results[i].vote_average;
+                // console.log(voto);
+
+                var singolo_film = {
+                    titolo: titolo,
+                    titolo_originale: titolo_originale,
+                    lingua: lingua,
+                    voto: voto
+                }
+
+                console.log(singolo_film);
+
+                var html_finale = template_function(singolo_film);
+                $('main').append(html_finale);
+            }
 
         },
 
@@ -27,7 +55,6 @@ function ricerca_api(research) {
             console.log('errore');
         }
     });
-
 }
 
 });
