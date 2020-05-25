@@ -69,12 +69,20 @@ function ricerca_api() {
         var voto = dati.vote_average;
 
         var voto_intero = Math.ceil(voto/2);
+        var stella = '';
+        var stella_vuota = '';
+        for (var i = 0; i < voto_intero; i++) {
+            stella = stella + '<i class="fas fa-star"></i>';
+        }
+        for (var i = 0; i < (5-voto_intero); i++) {
+            stella_vuota = stella_vuota + '<i class="far fa-star"></i>';
+        }
 
         var singolo_film = {
             titolo: dati.title,
             titolo_originale: dati.original_title,
             lingua: dati.original_language,
-            voto: voto_intero
+            voto: (stella + stella_vuota)
 
         }
 
