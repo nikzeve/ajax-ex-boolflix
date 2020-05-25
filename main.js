@@ -81,9 +81,15 @@ function ricerca_api() {
         var singolo_film = {
             titolo: dati.title,
             titolo_originale: dati.original_title,
-            lingua: dati.original_language,
-            voto: (stella + stella_vuota)
-
+            voto: (stella + stella_vuota),
+            lingua: function() {
+                var lingue = ['it', 'en', 'de', 'fr'];
+                if (lingue.includes(dati.original_language)) {
+                    return '<img src="bandiere/bandiera-'+dati.original_language+'.png">';
+                } else {
+                    return dati.original_language;
+                }
+            }
         }
 
         console.log(singolo_film);
