@@ -41,29 +41,13 @@ function ricerca_api() {
 
 
             for (var i = 0; i < numero_film; i++) {
-                var titolo = response.results[i].title;
-                // console.log(titolo);
-                var titolo_originale = response.results[i].original_title;
-                // console.log(titolo_originale);
-                var lingua = response.results[i].original_language;
-                // console.log(lingua);
-                var voto = response.results[i].vote_average;
-                // console.log(voto);
 
-                var voto_intero = Math.ceil(voto/2);
+                var film_corrente = response.results[i];
 
+                // var voto_intero = Math.ceil(voto/2);
 
-                var singolo_film = {
-                    titolo: titolo,
-                    titolo_originale: titolo_originale,
-                    lingua: lingua,
-                    voto: voto_intero
-                }
+                stampa_risultati(film_corrente);
 
-                console.log(singolo_film);
-
-                var html_finale = template_function(singolo_film);
-                $('main').append(html_finale);
             }
 
         },
@@ -75,9 +59,29 @@ function ricerca_api() {
 }
 
     function reset_research() {
-        $('#search-movie').val('');
 
+        $('#search-movie').val('');
         $('main').empty();
+
+    }
+
+    function stampa_risultati(dati) {
+        var voto = dati.vote_average;
+
+        var voto_intero = Math.ceil(voto/2);
+
+        var singolo_film = {
+            titolo: dati.title,
+            titolo_originale: dati.original_title,
+            lingua: dati.original_language,
+            voto: voto_intero
+
+        }
+
+        console.log(singolo_film);
+
+        var html_finale = template_function(singolo_film);
+        $('main').append(html_finale);
     }
 
 });
