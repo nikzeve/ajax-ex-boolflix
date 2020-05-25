@@ -4,16 +4,30 @@ $(document).ready(function() {
     var template_function = Handlebars.compile(template_html);
 
     $('#search-icon').click(function() {
-        var control_research = $('#search-movie').val();
-        if (control_research.trim() != '') {
-            var research = control_research
-            console.log(research);
-            $('#search-movie').val('');
-            ricerca_api(research);
-        }
+
+        ricerca_api();
+
     });
 
-function ricerca_api(research) {
+    $('#search-movie').keyup(function(event) {
+
+        if (event.which == 13) {
+            ricerca_api();
+        }
+
+    });
+
+function ricerca_api() {
+
+    var research = $('#search-movie').val().trim();
+
+    if (research.length > 1) {
+
+        reset_research();
+
+    }
+
+
     $.ajax({
         url: 'https://api.themoviedb.org/3/search/movie',
         method: 'GET',
@@ -59,5 +73,11 @@ function ricerca_api(research) {
         }
     });
 }
+
+    function reset_research() {
+        $('#search-movie').val('');
+
+        $('main').empty();
+    }
 
 });
