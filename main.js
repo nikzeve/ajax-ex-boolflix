@@ -36,11 +36,14 @@ function ricerca_api(research) {
                 var voto = response.results[i].vote_average;
                 // console.log(voto);
 
+                var voto_intero = Math.ceil(voto/2);
+
+
                 var singolo_film = {
                     titolo: titolo,
                     titolo_originale: titolo_originale,
                     lingua: lingua,
-                    voto: voto
+                    voto: voto_intero
                 }
 
                 console.log(singolo_film);
