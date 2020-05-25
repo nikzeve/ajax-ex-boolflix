@@ -56,6 +56,33 @@ function ricerca_api() {
             console.log('errore');
         }
     });
+
+    $.ajax({
+        url: 'https://api.themoviedb.org/3/search/tv',
+        method: 'GET',
+        data: {
+            api_key: '98ca6c1854d7d040d31087b5ed5527b2',
+            query: research
+        },
+        success: function(response) {
+            // console.log(response);
+            var numero_serie_tv = response.results.length;
+            // console.log(numero_serie_tv);
+            for (var i = 0; i < numero_serie_tv; i++) {
+                var serie_tv_corrente = response.results[i]
+
+                console.log(response.results[i].name);
+                // serie_tv_corrente = serie_tv_corrente.map(function(obj) {
+                //     obj['title'] = obj['name'];
+                //     delete obj['name'];
+                //     return obj;
+                //     console.log(serie_tv_corrente);
+                // })
+                rename(serie_tv_corrente)
+                stampa_risultati(serie_tv_corrente);
+            }
+        }
+    });
 }
 
     function reset_research() {
@@ -92,10 +119,16 @@ function ricerca_api() {
             }
         }
 
-        console.log(singolo_film);
-
         var html_finale = template_function(singolo_film);
         $('main').append(html_finale);
+    }
+
+    function rename(serie_tv_corrente) {
+        serie_tv_corrente = serie_tv_corrente.map(function(obj) {
+        obj['title'] = obj['name'];
+        delete obj['name'];
+        return obj;
+        });
     }
 
 });
