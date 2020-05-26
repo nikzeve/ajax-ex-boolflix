@@ -17,73 +17,76 @@ $(document).ready(function() {
 
     });
 
-function ricerca_api() {
+    function ricerca_api() {
 
-    var research = $('#search-movie').val().trim();
+        var research = $('#search-movie').val().trim();
 
-    if (research.length > 1) {
+        if (research.length > 1) {
 
-        reset_research();
+            reset_research();
 
+        }
+
+
+        $.ajax({
+            url: 'https://api.themoviedb.org/3/search/movie',
+            method: 'GET',
+            data: {
+                api_key: '98ca6c1854d7d040d31087b5ed5527b2',
+                query: research
+            },
+            success: function(response) {
+
+                var numero_film = response.results.length;
+
+
+                for (var i = 0; i < numero_film; i++) {
+
+                    var film_corrente = response.results[i];
+
+                    // var voto_intero = Math.ceil(voto/2);
+
+                    stampa_risultati(film_corrente, 'film');
+
+                }
+
+            },
+
+            error: function() {
+                console.log('errore');
+            }
+        });
+
+        $.ajax({
+            url: 'https://api.themoviedb.org/3/search/tv',
+            method: 'GET',
+            data: {
+                api_key: '98ca6c1854d7d040d31087b5ed5527b2',
+                query: research
+            },
+            success: function(response) {
+                // console.log(response);
+                var numero_serie_tv = response.results.length;
+                // console.log(numero_serie_tv);
+                for (var i = 0; i < numero_serie_tv; i++) {
+                    var serie_tv_corrente = response.results[i]
+
+                    console.log(response.results[i].name);
+                    // serie_tv_corrente = serie_tv_corrente.map(function(obj) {
+                    //     obj['title'] = obj['name'];
+                    //     delete obj['name'];
+                    //     return obj;
+                    //     console.log(serie_tv_corrente);
+                    // })
+
+                    stampa_risultati(serie_tv_corrente, 'serie tv');
+                }
+            },
+            error: function() {
+                console.log('errore');
+            }
+        });
     }
-
-
-    $.ajax({
-        url: 'https://api.themoviedb.org/3/search/movie',
-        method: 'GET',
-        data: {
-            api_key: '98ca6c1854d7d040d31087b5ed5527b2',
-            query: research
-        },
-        success: function(response) {
-
-            var numero_film = response.results.length;
-
-
-            for (var i = 0; i < numero_film; i++) {
-
-                var film_corrente = response.results[i];
-
-                // var voto_intero = Math.ceil(voto/2);
-
-                stampa_risultati(film_corrente);
-
-            }
-
-        },
-
-        error: function() {
-            console.log('errore');
-        }
-    });
-
-    $.ajax({
-        url: 'https://api.themoviedb.org/3/search/tv',
-        method: 'GET',
-        data: {
-            api_key: '98ca6c1854d7d040d31087b5ed5527b2',
-            query: research
-        },
-        success: function(response) {
-            // console.log(response);
-            var numero_serie_tv = response.results.length;
-            // console.log(numero_serie_tv);
-            for (var i = 0; i < numero_serie_tv; i++) {
-                var serie_tv_corrente = response.results[i]
-
-                console.log(response.results[i].name);
-                // serie_tv_corrente = serie_tv_corrente.map(function(obj) {
-                //     obj['title'] = obj['name'];
-                //     delete obj['name'];
-                //     return obj;
-                //     console.log(serie_tv_corrente);
-                // })
-                rename(serie_tv_corrente)
-                stampa_risultati(serie_tv_corrente);
-            }
-        }
-    });
-}
 
     function reset_research() {
 
@@ -92,7 +95,7 @@ function ricerca_api() {
 
     }
 
-    function stampa_risultati(dati) {
+    function stampa_risultati(dati, tipologia) {
         var voto = dati.vote_average;
 
         var voto_intero = Math.ceil(voto/2);
@@ -105,9 +108,17 @@ function ricerca_api() {
             stella_vuota = stella_vuota + '<i class="far fa-star"></i>';
         }
 
+        if (tipologia == 'film')  {
+            var titolo_contenuto = dati.title;
+            var titolo_originale_contenuto = dati.original_title;
+        } else {
+            var titolo_contenuto = dati.name;
+            var titolo_originale_contenuto = dati.original_name;
+        }
+
         var singolo_film = {
-            titolo: dati.title,
-            titolo_originale: dati.original_title,
+            titolo: titolo_contenuto,
+            titolo_originale: titolo_originale_contenuto,
             voto: (stella + stella_vuota),
             lingua: function() {
                 var lingue = ['it', 'en', 'de', 'fr'];
@@ -116,19 +127,20 @@ function ricerca_api() {
                 } else {
                     return dati.original_language;
                 }
-            }
+            },
+            tipo: tipologia,
+            locandina: stampa_locandina(dati.poster_path)
         }
 
+        console.log(singolo_film.locandina);
         var html_finale = template_function(singolo_film);
         $('main').append(html_finale);
     }
 
-    function rename(serie_tv_corrente) {
-        serie_tv_corrente = serie_tv_corrente.map(function(obj) {
-        obj['title'] = obj['name'];
-        delete obj['name'];
-        return obj;
-        });
+    function stampa_locandina(locandina) {
+
+        locandina_contenuto = 'https://image.tmdb.org/t/p/w185' + locandina;
+        return locandina_contenuto;
     }
 
 });
