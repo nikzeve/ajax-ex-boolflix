@@ -139,6 +139,8 @@ $(document).ready(function() {
 
     function stampa_locandina(locandina) {
 
+
+
         locandina_contenuto = 'https://image.tmdb.org/t/p/w185' + locandina;
         return locandina_contenuto;
     }
