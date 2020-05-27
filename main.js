@@ -33,7 +33,8 @@ $(document).ready(function() {
             method: 'GET',
             data: {
                 api_key: '98ca6c1854d7d040d31087b5ed5527b2',
-                query: research
+                query: research,
+                language: 'it'
             },
             success: function(response) {
 
@@ -62,7 +63,8 @@ $(document).ready(function() {
             method: 'GET',
             data: {
                 api_key: '98ca6c1854d7d040d31087b5ed5527b2',
-                query: research
+                query: research,
+                language: 'it'
             },
             success: function(response) {
                 // console.log(response);
@@ -70,14 +72,6 @@ $(document).ready(function() {
                 // console.log(numero_serie_tv);
                 for (var i = 0; i < numero_serie_tv; i++) {
                     var serie_tv_corrente = response.results[i]
-
-                    console.log(response.results[i].name);
-                    // serie_tv_corrente = serie_tv_corrente.map(function(obj) {
-                    //     obj['title'] = obj['name'];
-                    //     delete obj['name'];
-                    //     return obj;
-                    //     console.log(serie_tv_corrente);
-                    // })
 
                     stampa_risultati(serie_tv_corrente, 'serie tv');
                 }
@@ -129,7 +123,9 @@ $(document).ready(function() {
                 }
             },
             tipo: tipologia,
-            locandina: stampa_locandina(dati.poster_path)
+            locandina: stampa_locandina(dati.poster_path),
+            descrizione: dati.overview
+
         }
 
         console.log(singolo_film.locandina);
@@ -141,7 +137,7 @@ $(document).ready(function() {
 
 
 
-        locandina_contenuto = 'https://image.tmdb.org/t/p/w185' + locandina;
+        locandina_contenuto = 'https://image.tmdb.org/t/p/w342' + locandina;
         return locandina_contenuto;
     }
 

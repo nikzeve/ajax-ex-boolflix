@@ -31,17 +31,18 @@
             <script id="film" type="text/x-handlebars-template">
                 <div class="film">
                     <div class="flip-card-inner">
-                        
+
                         <div class="flip-card-front">
                             <img src="{{locandina}}" alt="">
                         </div>
 
                         <div class="flip-card-back">
-                            <p>{{titolo}}</p>
-                            <p>{{titolo_originale}}</p>
+                            <p><span>Titolo: </span> {{titolo}}</p>
+                            <p><span>Titolo originale: </span> {{titolo_originale}}</p>
                             <p class="lingua">{{{lingua}}}</p>
                             <p class="voto">{{{voto}}}</p>
-                            <p>{{{tipo}}}</p>
+                            <p><span>Tipo: </span> {{{tipo}}}</p>
+                            <p><span>Descrizione: </span> {{{descrizione}}}</p>
                         </div>
 
                     </div>
