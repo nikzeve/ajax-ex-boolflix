@@ -5,15 +5,18 @@
         <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
         <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         <title>Boolflix</title>
     </head>
     <body>
+        <!-- -HEADER- -->
         <header class="clearfix">
-
-            <div id="header-left">
-                <img src="https://fontmeme.com/permalink/200523/646793dd12cd2fe24043bdf42bce4831.png" alt="">
+            <div id="header-left" class="clearfix">
+                <div id="logo-container" class="clearfix">
+                    <img id="logo" src="https://fontmeme.com/permalink/201228/96b2acf184c3f7a75b3e1eaa443a54e8.png" alt="">
+                </div>
             </div>
-            <div id="header-right">
+            <div id="header-right" class="clearfix">
                 <div id="search" class="clearfix">
                     <div id="search-icon" class="clearfix">
                         <i class="fas fa-search"></i>
@@ -22,11 +25,151 @@
                         <input type="text" id="search-movie" placeholder="Cerca">
                     </div>
                 </div>
+                <div id="return-box" class="none">
+                    <a id="return" href="#">Torna alla home</a>
+                </div>
             </div>
-
         </header>
+        <!-- -FINE HEADER- -->
 
         <main>
+            <div id="film-results">
+
+            </div>
+
+            <div class="home-page">
+                <div class="your-list">
+                    <h2>La tua lista</h2>
+                </div>
+
+                <div class="your-list-film">
+                    <div class="film">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="https://cdn.ilpost.it/wp-content/uploads/2019/12/locandine14.jpg" alt="">
+                            </div>
+
+                            <div class="flip-card-back">
+                                <p><span>Titolo: </span> Joker </p>
+                                <p><span>Titolo originale: </span> Joker </p>
+                                <p class="lingua">Inglese</p>
+                                <p><span>Tipo: </span> Film </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="film">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="https://www.fumettologica.it/wp-content/uploads/2016/06/sw1.jpg" alt="">
+                            </div>
+
+                            <div class="flip-card-back">
+                                <p><span>Titolo: </span> Guerre stellari </p>
+                                <p><span>Titolo originale: </span> Star Wars </p>
+                                <p class="lingua">Inglese</p>
+                                <p><span>Tipo: </span> Film </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="film">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="https://lnx.whipart.it/imagesart9/1382899075-quasi_amici.jpg" alt="">
+                            </div>
+
+                            <div class="flip-card-back">
+                                <p><span>Titolo: </span> Quasi amici</p>
+                                <p class="lingua">Francese</p>
+                                <p><span>Tipo: </span> Film </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="film">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="https://www.fransuwebsite.it/wp-content/uploads/2020/04/l-immortale_notizia-2.jpg" alt="">
+                            </div>
+
+                            <div class="flip-card-back">
+                                <p><span>Titolo: </span> L'immortale </p>
+                                <p class="lingua">Italiano</p>
+                                <p><span>Tipo: </span> Film</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="home-page">
+                <div class="your-list">
+                    <h2>Consigliati</h2>
+                </div>
+
+                <div class="your-list-film">
+                    <div class="film">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="https://cdn.ilpost.it/wp-content/uploads/2019/12/locandine14.jpg" alt="">
+                            </div>
+
+                            <div class="flip-card-back">
+                                <p><span>Titolo: </span> Joker </p>
+                                <p><span>Titolo originale: </span> Joker </p>
+                                <p class="lingua">Inglese</p>
+                                <p><span>Tipo: </span> Film </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="film">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="https://www.fumettologica.it/wp-content/uploads/2016/06/sw1.jpg" alt="">
+                            </div>
+
+                            <div class="flip-card-back">
+                                <p><span>Titolo: </span> Guerre stellari </p>
+                                <p><span>Titolo originale: </span> Star Wars </p>
+                                <p class="lingua">Inglese</p>
+                                <p><span>Tipo: </span> Film </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="film">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="https://lnx.whipart.it/imagesart9/1382899075-quasi_amici.jpg" alt="">
+                            </div>
+
+                            <div class="flip-card-back">
+                                <p><span>Titolo: </span> Quasi amici</p>
+                                <p class="lingua">Francese</p>
+                                <p><span>Tipo: </span> Film </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="film">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="https://www.fransuwebsite.it/wp-content/uploads/2020/04/l-immortale_notizia-2.jpg" alt="">
+                            </div>
+
+                            <div class="flip-card-back">
+                                <p><span>Titolo: </span> L'immortale </p>
+                                <p class="lingua">Italiano</p>
+                                <p><span>Tipo: </span> Film</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <script id="film" type="text/x-handlebars-template">
                 <div class="film">

@@ -5,16 +5,109 @@
 }
 
 body {
-    background-color: black;
+    background-color: #141414;
+    color: white;
+    font-family: 'Roboto', sans-serif;
 }
 
 header {
-    height: 100px;
+    height: 80px;
     width: 100%;
     position: fixed;
-    background-color: #282828;
+    background-color: #141414;
     top: 0;
     z-index: 999;
+}
+
+main {
+    margin-top: 100px;
+    height: 700px;
+    width: 100%;
+}
+
+#film-results {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap
+
+}
+
+#header-left {
+    width: 60%;
+    height: 100%;
+    float: left;
+}
+
+#logo-container {
+    width: 15%;
+    padding: 13px 10px;
+    float: left;
+}
+
+#logo {
+    width: 100%;
+    height: 50px;
+}
+
+#header-right {
+    height: 100%;
+    width: 40%;
+    float: right;
+    margin: auto;
+}
+
+#return-box {
+    width: 20%;
+    float: right;
+    padding: 30.5px 0;
+    margin-right: 30px;
+}
+
+#return-box a {
+    color: white;
+    text-decoration: none;
+}
+
+#search {
+    width: 50%;
+    float: right;
+    padding: 24px 20px;
+}
+
+#search-icon {
+    float: left;
+    width: 20%;
+    text-align: center;
+    background-color: black;
+    border: 1px solid white;
+    border-right: none;
+    color: white;
+    padding: 4.5px 0;
+    cursor: pointer;
+}
+
+#search-bar {
+    float: left;
+    width: 70%;
+}
+
+#search-bar input {
+    width: 100%;
+    height: 30px;
+    border: none;
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    padding-left: 10px;
+}
+
+.none {
+    display: none;
+}
+
+.active {
+    display: block;
 }
 
 .clearfix::after {
@@ -23,57 +116,19 @@ header {
     content: '';
 }
 
-#header-left {
-    float: left;
-    height: 100%;
-    width: 15%;
-    padding: 25px;
-}
-
-#header-left img {
-    height: 50px;
-}
-
-#header-right {
-    float: right;
-    height: 100%;
-    width: 20%;
-    padding: 40px 20px;
-}
-
-#search {
-    height: 100%;
-}
-
-#search-icon {
-    float: left;
-    width: 20%;
-    text-align: center;
-    background-color: white;
-    color: grey;
-    padding: 6px 0;
-}
-
-#search-bar {
-    float: left;
-    width: 80%;
-}
-
-#search-bar input {
+.home-page {
     width: 100%;
-    height: 30px;
-    border: none;
-    border-left: 1px solid #e4e4e4;
-    padding-left: 10px;
+    padding: 0 16px;
 }
 
-main {
-    margin-top: 100px;
-    height: 700px;
+.your-list-film {
     width: 100%;
     display: flex;
-    padding: 10px;
     flex-wrap: wrap
+}
+
+.your-list-film img {
+    width: 320px;
 }
 
 .film {
@@ -105,7 +160,7 @@ main {
 }
 
 .flip-card-back {
-    background-color: #282828;
+    background-color: black;
     color: white;
     transform: rotateY(180deg);
     font-size: 16px;

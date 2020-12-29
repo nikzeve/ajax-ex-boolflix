@@ -5,20 +5,74 @@ $(document).ready(function() {
 
     $('#search-icon').click(function() {
 
-        ricerca_api();
-
+        var valore_ricerca = $('#search-movie').val().trim();
+        if (valore_ricerca.length > 1) {
+            ricerca_api();
+        } else {
+            console.log('non hai inserito nulla');
+        }
     });
 
     $('#search-movie').keyup(function(event) {
 
         if (event.which == 13) {
-            ricerca_api();
-        }
 
+            var valore_ricerca = $('#search-movie').val().trim();
+            if (valore_ricerca.length > 1) {
+                ricerca_api();
+            } else {
+                console.log('non hai inserito nulla');
+            }
+        }
     });
 
-    function ricerca_api() {
+    $('#return-box').click(function() {
+        $('#search-movie').val('');
+        $('#film-results').empty();
+        none_torna_home();
+        active_home_page();
+        active_search_bar();
+    });
 
+    function none_torna_home() {
+        $('#return-box').removeClass('active');
+        $('#return-box').toggleClass('none');
+    }
+
+    function active_torna_home() {
+        $('#return-box').removeClass('none');
+        $('#return-box').toggleClass('active');
+    }
+
+    function none_home_page() {
+        $('.home-page').removeClass('active');
+        $('.home-page').toggleClass('none');
+    }
+
+    function active_home_page() {
+        $('.home-page').removeClass('none');
+        $('.home-page').toggleClass('active');
+    }
+
+    function none_search_bar() {
+        $('#search').removeClass('active');
+        $('#search').toggleClass('none');
+    }
+
+    function active_search_bar() {
+        $('#search').removeClass('none');
+        $('#search').toggleClass('active');
+    }
+
+    function reset_research() {
+        $('#search-movie').val('');
+        $('.film-results').empty();
+    }
+
+    function ricerca_api() {
+        active_torna_home();
+        none_home_page();
+        none_search_bar();
         var research = $('#search-movie').val().trim();
 
         if (research.length > 1) {
@@ -39,6 +93,10 @@ $(document).ready(function() {
             success: function(response) {
 
                 var numero_film = response.results.length;
+
+                if (numero_film == 0) {
+                    $('#film-results').append('<div>   Non ci sono film...   </div>')
+                }
 
 
                 for (var i = 0; i < numero_film; i++) {
@@ -67,9 +125,13 @@ $(document).ready(function() {
                 language: 'it'
             },
             success: function(response) {
-                // console.log(response);
+
                 var numero_serie_tv = response.results.length;
-                // console.log(numero_serie_tv);
+
+                if (numero_serie_tv == 0) {
+                    $('#film-results').append('<div>   Non ci sono serie tv...   </div>')
+                }
+
                 for (var i = 0; i < numero_serie_tv; i++) {
                     var serie_tv_corrente = response.results[i]
 
@@ -82,12 +144,6 @@ $(document).ready(function() {
         });
     }
 
-    function reset_research() {
-
-        $('#search-movie').val('');
-        $('main').empty();
-
-    }
 
     function stampa_risultati(dati, tipologia) {
         var voto = dati.vote_average;
@@ -130,14 +186,15 @@ $(document).ready(function() {
 
         console.log(singolo_film.locandina);
         var html_finale = template_function(singolo_film);
-        $('main').append(html_finale);
+        $('#film-results').append(html_finale);
     }
 
     function stampa_locandina(locandina) {
 
-
-
-        locandina_contenuto = 'https://image.tmdb.org/t/p/w342' + locandina;
+        if (locandina === null) {
+            locandina_contenuto = 'bandiere/unnamed-5.jpg';
+            return locandina_contenuto
+        } locandina_contenuto = 'https://image.tmdb.org/t/p/w342' + locandina;
         return locandina_contenuto;
     }
 
